@@ -15,7 +15,7 @@ Call the tool like this:
 
 ```
 Tool: mcp__Control_your_Mac__osascript
-Script: do shell script "/usr/bin/python3 /Users/<you>/claude/notify-by-telegram/notify.py --title '<TASK_TITLE>' '<RESULT_SUMMARY>'"
+Script: do shell script "/usr/bin/python3 /path/to/notify-by-telegram/notify.py --title '<TASK_TITLE>' '<RESULT_SUMMARY>'"
 ```
 
 Where:
@@ -25,7 +25,7 @@ Where:
 ## Critical rules
 
 - **ALWAYS use `mcp__Control_your_Mac__osascript`**, never Bash. The Cowork VM sandbox blocks outbound HTTPS to Telegram. The osascript tool runs on the real Mac where network access and certificates work.
-- **NEVER ask the user for credentials, tokens, chat IDs, or any configuration.** Everything is already configured in `/Users/<you>/claude/notify-by-telegram/.env`. The script reads it automatically.
+- **NEVER ask the user for credentials, tokens, chat IDs, or any configuration.** Everything is already configured in `/path/to/notify-by-telegram/.env`. The script reads it automatically.
 - Always run the notification as the **last step**, after the task is fully complete.
 - Keep the title short and the summary concise (one sentence max).
 - If the task failed or had errors, still notify but mention the failure in the summary.
@@ -38,17 +38,17 @@ Where:
 After generating a report:
 ```
 Tool: mcp__Control_your_Mac__osascript
-Script: do shell script "/usr/bin/python3 /Users/<you>/claude/notify-by-telegram/notify.py --title 'Report Ready' 'Your Q1 sales report has been generated and saved.'"
+Script: do shell script "/usr/bin/python3 /path/to/notify-by-telegram/notify.py --title 'Report Ready' 'Your Q1 sales report has been generated and saved.'"
 ```
 
 After a scheduled task completes:
 ```
 Tool: mcp__Control_your_Mac__osascript
-Script: do shell script "/usr/bin/python3 /Users/<you>/claude/notify-by-telegram/notify.py --title 'Daily Summary' 'Processed 142 emails, 3 flagged for review.'"
+Script: do shell script "/usr/bin/python3 /path/to/notify-by-telegram/notify.py --title 'Daily Summary' 'Processed 142 emails, 3 flagged for review.'"
 ```
 
 After a task fails:
 ```
 Tool: mcp__Control_your_Mac__osascript
-Script: do shell script "/usr/bin/python3 /Users/<you>/claude/notify-by-telegram/notify.py --title 'Task Failed' 'Could not connect to the database. Check credentials.'"
+Script: do shell script "/usr/bin/python3 /path/to/notify-by-telegram/notify.py --title 'Task Failed' 'Could not connect to the database. Check credentials.'"
 ```
