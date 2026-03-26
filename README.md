@@ -113,22 +113,38 @@ python3 notify.py --markdown '*Status*: all tests passed'
 
 ## Claude Cowork integration
 
-### Cowork Skill (recommended)
+### Install the skill
 
-The project includes a Cowork skill in `skill/SKILL.md`. Once installed, you can add "notifícame por Telegram" (or "notify me on Telegram") to any request and Claude will automatically send you a notification when the task finishes.
+The skill lets you add "notifícame por Telegram" (or "notify me on Telegram") to any Cowork request. Claude will automatically send you a Telegram notification when the task finishes.
 
 **Trigger phrases:** "notifícame por Telegram", "avísame por Telegram", "mándame un Telegram", "notify me on Telegram", "send me a Telegram when done", or any variation.
 
-**Install the skill:**
+There are three ways to install it:
+
+#### Option A: `.skill` package (easiest)
+
+Download [`telegram-notify.skill`](telegram-notify.skill) from this repo and open it in Cowork. A "Copy to your skills" button will appear — click it and you're done.
+
+#### Option B: Manual copy
 
 ```bash
 mkdir -p ~/.claude/skills/telegram-notify
 cp skill/SKILL.md ~/.claude/skills/telegram-notify/SKILL.md
 ```
 
-After installing, the skill is available globally in all Cowork sessions, regardless of which project or folder you select.
+#### Option C: Clone the repo
 
-**Example usage in Cowork:**
+```bash
+git clone https://github.com/joobid/notify-by-telegram.git
+mkdir -p ~/.claude/skills/telegram-notify
+cp notify-by-telegram/skill/SKILL.md ~/.claude/skills/telegram-notify/SKILL.md
+```
+
+After installing (any option), the skill is available globally in all Cowork sessions, regardless of which folder you select.
+
+> **Important:** After installing, edit `~/.claude/skills/telegram-notify/SKILL.md` and replace every `/path/to/notify-by-telegram` with the actual path where you cloned or downloaded the project (e.g., `~/claude/notify-by-telegram`).
+
+### Example usage in Cowork
 
 > "Generate the Q1 sales report and notifícame por Telegram"
 
@@ -139,7 +155,7 @@ Claude will generate the report and then send you a Telegram notification with a
 You can also reference the script directly in Cowork scheduled task prompts:
 
 ```
-When done, run: python3 /Users/<you>/claude/notify-by-telegram/notify.py --title 'Task Name' 'Result summary'
+When done, run: python3 /path/to/notify-by-telegram/notify.py --title 'Task Name' 'Result summary'
 ```
 
 ## Corporate proxy / SSL
@@ -161,13 +177,14 @@ SSL_CERT_FILE=/path/to/certs.pem python3 notify.py 'Hello'
 
 ```
 notify-by-telegram/
-├── notify.py          # Main script
-├── .env.example       # Credential template
-├── .env               # Your credentials (gitignored)
-├── .gitignore         # Excludes .env and Python caches
+├── notify.py                  # Main script
+├── .env.example               # Credential template
+├── .env                       # Your credentials (gitignored)
+├── .gitignore                 # Excludes .env and Python caches
 ├── .githooks/
-│   └── pre-commit     # Blocks credential leaks
+│   └── pre-commit             # Blocks credential leaks
 ├── skill/
-│   └── SKILL.md       # Cowork skill definition
+│   └── SKILL.md               # Cowork skill definition
+├── telegram-notify.skill      # One-click install package for Cowork
 └── README.md
 ```
