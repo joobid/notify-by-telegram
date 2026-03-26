@@ -2,7 +2,7 @@
 
 Send notifications from Claude Cowork to Telegram using the Bot API.
 
-Workaround for when [Claude Code Channels](https://code.claude.com/docs/en/channels) is blocked by your organization's policy. Includes a Cowork skill so you can simply say "notifícame por Telegram" in any conversation.
+Workaround for when [Claude Code Channels](https://code.claude.com/docs/en/channels) is blocked by your organization's policy. Includes a Cowork skill so you can simply say "notify me on Telegram" in any conversation.
 
 ## Features
 
@@ -115,9 +115,9 @@ python3 notify.py --markdown '*Status*: all tests passed'
 
 ### Install the skill
 
-The skill lets you add "notifícame por Telegram" (or "notify me on Telegram") to any Cowork request. Claude will automatically send you a Telegram notification when the task finishes.
+The skill lets you add "notify me on Telegram" to any Cowork request. Claude will automatically send you a Telegram notification when the task finishes.
 
-**Trigger phrases:** "notifícame por Telegram", "avísame por Telegram", "mándame un Telegram", "notify me on Telegram", "send me a Telegram when done", or any variation.
+**Trigger phrases:** "notify me on Telegram", "send me a Telegram when done", "Telegram notification", or any variation. Also works in Spanish: "notifícame por Telegram", "avísame por Telegram", "mándame un Telegram".
 
 There are three ways to install it:
 
@@ -146,7 +146,7 @@ After installing (any option), the skill is available globally in all Cowork ses
 
 ### Example usage in Cowork
 
-> "Generate the Q1 sales report and notifícame por Telegram"
+> "Generate the Q1 sales report and notify me on Telegram"
 
 Claude will generate the report and then send you a Telegram notification with a summary of the result.
 
