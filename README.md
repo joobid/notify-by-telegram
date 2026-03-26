@@ -21,7 +21,7 @@ Python 3.10+ (no external dependencies — uses only stdlib).
 
 ### 1. Create a Telegram bot
 
-Open [@BotFather](https://t.me/BotFather) in Telegram, send `/newbot`, and copy the token.
+Open [@BotFather](https://t.me/BotFather) in Telegram, send `/newbot`, and copy the token. For a detailed walkthrough, see the [official Telegram tutorial](https://core.telegram.org/bots/tutorial).
 
 ### 2. Get your Chat ID
 
