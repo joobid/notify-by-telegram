@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Pre-commit hook: block commits that contain Telegram credentials.
+# Install with: git config core.hooksPath .githooks
+
+STAGED=$(git diff --cached --name-only)
+
+# Block .env files (except .env.example)
+for file in $STAGED; do
+    if [[ "$file" == .env* && "$file" != ".env.example" ]]; then
+        echo "❌ BLOCKED: '$file' contains credentials and must not be committed."
+        echo "   Remove it with: git reset HEAD $file"
+        exit 1
+    fi
+done
+
+# Scan staged content for real Telegram bot tokens (format: 123456789:AAxxxx…)
+# Uses grep on the actual staged content to avoid pickaxe false positives
+if git diff --cached -p | grep -qP '^\+.*[0-9]{8,}:AA[A-Za-z0-9_\-]{30,}'; then
+    echo "❌ BLOCKED: A staged file appears to contain a Telegram bot token."
+    echo "   Review your changes with: git diff --cached"
+    exit 1
+fi
+
+exit 0
